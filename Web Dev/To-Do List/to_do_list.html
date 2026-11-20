@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <title>Tasks</title>
+</head>
+<body>
+  <!-- Onboarding screen shown on first visit to capture the user's name -->
+  <section class="welcome-screen" id="welcome-screen" aria-labelledby="welcome-title">
+    <h1 class="welcome-title" id="welcome-title">
+      <span>Welcome</span>
+      <span>to</span>
+      <span>Tasks</span>
+    </h1>
+    <p class="welcome-introduction">Let's get your list ready.</p>
+    <form class="name-form" id="name-form">
+      <label for="name-input">What should we call you?</label>
+      <input id="name-input" name="name" type="text" placeholder="Enter your name" autocomplete="name" required>
+      <button type="submit">Start planning</button>
+    </form>
+  </section>
+
+  <!-- Main task manager interface (revealed after name is submitted or loaded) -->
+  <main id="task-app" hidden>
+    <h1 class="main-title">Tasks</h1>
+    <p class="welcome-message">
+      <span class="welcome-message-text">Welcome:</span>
+      <span class="welcome-message-name" id="welcome-name"></span>
+    </p>
+
+    <!-- New task creation form -->
+    <form class="add-task" id="task-form">
+      <h2 class="form-add-task-title">Add Task</h2>
+
+      <input
+        class="form-add-task-text"
+        type="text"
+        name="title"
+        placeholder="Title"
+        aria-label="Task title"
+        required
+      >
+      <input
+        class="form-add-task-date"
+        type="date"
+        name="date"
+        aria-label="Task date"
+        required
+      >
+      <input
+        class="form-add-task-time"
+        type="time"
+        name="time"
+        aria-label="Task time"
+      >
+
+      <button class="form-add-task-submit" type="submit">Submit</button>
+    </form>
+
+    <!-- Sorting controls: tab buttons on desktop, select dropdown on mobile screens -->
+    <div class="sort-controls">
+      <label for="sort-tasks">Sort by:</label>
+      <div class="sort-options">
+        <button type="button" data-sort="date">Date</button>
+        <button class="active" type="button" data-sort="time">Time Added</button>
+        <button type="button" data-sort="alphabetical">Alphabetical Order</button>
+      </div>
+      <select class="sort-dropdown" id="sort-tasks" name="sort">
+        <option value="date">Date</option>
+        <option value="time" selected>Time Added</option>
+        <option value="alphabetical">Alphabetical Order</option>
+      </select>
+    </div>
+
+    <!-- Active pending tasks container -->
+    <details class="task-section" open>
+      <summary class="section-title">Pending Tasks</summary>
+      <div class="task-list" id="pending-tasks" aria-live="polite"></div>
+    </details>
+
+    <!-- Completed tasks archive container -->
+    <details class="task-section completed-section">
+      <summary class="section-title">Completed Tasks</summary>
+      <div class="task-list" id="completed-tasks" aria-live="polite"></div>
+    </details>
+  </main>
+</body>
+</html>

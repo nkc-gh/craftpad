@@ -1,0 +1,498 @@
+/* Box sizing reset and base page layout */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px 16px 48px;
+  overflow-x: hidden;
+  background: #ffefd5;
+  color: #000;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+main {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+}
+
+/* Onboarding welcome screen (captures user name before showing tasks) */
+.welcome-screen {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 20px;
+  min-height: calc(100vh - 72px);
+  text-align: center;
+}
+
+.welcome-screen[hidden],
+#task-app[hidden] {
+  display: none;
+}
+
+.welcome-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  color: #5d866c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(68px, 11vw, 150px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+}
+
+.welcome-title span:nth-child(2) {
+  color: #167d8d;
+  font-size: 0.52em;
+  font-style: italic;
+  line-height: 1.15;
+}
+
+.welcome-introduction {
+  margin: 0;
+  color: #142d4c;
+  font-size: clamp(19px, 2.5vw, 26px);
+}
+
+.name-form {
+  display: grid;
+  gap: 12px;
+  width: min(430px, 100%);
+  padding: 28px;
+  border: 1px solid rgb(20 45 76 / 12%);
+  border-radius: 22px;
+  background: rgb(236 236 236 / 94%);
+  box-shadow: 0 10px 24px rgb(20 45 76 / 18%);
+}
+
+.name-form label {
+  width: 100%;
+  color: #142d4c;
+  font-size: 21px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.name-form input,
+.name-form button {
+  min-height: 50px;
+  border: 1px solid rgb(0 0 0 / 60%);
+  border-radius: 5px;
+  font: inherit;
+}
+
+.name-form input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 20px;
+  background: #fff;
+}
+
+.name-form button {
+  width: 100%;
+  padding: 11px 24px;
+  color: #fff;
+  background: #4a943e;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.name-form button:hover {
+  background: #397731;
+}
+
+/* Main task manager header & greeting */
+.main-title {
+  margin: 0;
+  color: #5d866c;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(64px, 10vw, 128px);
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+}
+
+.welcome-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 24px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.welcome-message-text {
+  color: #167d8d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 500;
+}
+
+.welcome-message-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 3vw, 32px);
+}
+
+/* Add Task form layout */
+.add-task {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  width: min(650px, 100%);
+  margin: 0 auto;
+  padding: 24px 48px 36px;
+  border-radius: 25px;
+  background: #ececec;
+  box-shadow: 0 5px 8px rgb(0 0 0 / 15%);
+}
+
+.form-add-task-title {
+  width: 100%;
+  margin: 0 0 4px;
+  color: #142d4c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 36px;
+  text-align: center;
+}
+
+.form-add-task-text,
+.form-add-task-date,
+.form-add-task-time,
+.form-add-task-submit {
+  min-height: 52px;
+  border: 1px solid rgb(0 0 0 / 60%);
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 24px;
+}
+
+.form-add-task-text {
+  width: 100%;
+  padding: 8px 10px;
+  background: rgb(255 255 255 / 70%);
+}
+
+.form-add-task-date,
+.form-add-task-time {
+  min-width: 0;
+  flex: 1;
+  padding: 8px;
+  background: rgb(56 173 255 / 51%);
+}
+
+.form-add-task-submit {
+  padding: 8px 18px;
+  color: #fff;
+  background: #4a943e;
+  cursor: pointer;
+}
+
+.form-add-task-submit:hover {
+  background: #397731;
+}
+
+/* Sorting controls bar and animated tab indicators */
+.sort-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 36px auto 18px;
+  font-family: inherit;
+  font-size: 28px;
+}
+
+.sort-options {
+  display: flex;
+  gap: 24px;
+}
+
+.sort-options button {
+  position: relative;
+  padding: 0 0 2px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.sort-options button::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 220ms ease, background-color 160ms ease;
+}
+
+.sort-options button.active::after {
+  transform: scaleX(1);
+}
+
+.sort-options button:hover {
+  color: #167d8d;
+}
+
+.sort-options button.active:hover::after {
+  background: #167d8d;
+}
+
+.sort-dropdown {
+  display: none; /* hidden on desktop, displayed on mobile screens */
+  min-width: 220px;
+  padding: 8px 12px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background: #fff;
+  font: inherit;
+}
+
+.sort-dropdown:focus {
+  outline: 3px solid rgb(22 125 141 / 35%);
+  border-color: #167d8d;
+}
+
+/* Collapsible task sections (<details> and <summary>) */
+.task-section {
+  width: min(100%, 680px);
+  margin: 42px auto 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  padding: 8px 4px;
+  color: #142d4c;
+  border-bottom: 2px solid rgb(20 45 76 / 30%);
+  font-size: clamp(24px, 4vw, 32px);
+  text-align: center;
+  cursor: pointer;
+  list-style: none;
+}
+
+.section-title::before {
+  content: ">";
+  display: inline-block;
+  color: #167d8d;
+  font-size: 1.1em;
+  font-weight: 700;
+  transform: translateY(-1px);
+  transition: transform 160ms ease;
+}
+
+.task-section[open] .section-title::before {
+  transform: rotate(90deg) translateX(2px);
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  max-height: 2000px;
+  overflow: hidden;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    max-height 360ms ease,
+    opacity 220ms ease,
+    transform 360ms ease;
+}
+
+.task-section:not([open]) > .section-title {
+  margin-bottom: 0;
+}
+
+.task-section:not([open]) > .task-list {
+  display: flex;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+/* Task card component */
+.task-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 112px;
+  column-gap: 14px;
+  align-items: center;
+  width: min(620px, 100%);
+  min-height: 84px;
+  padding: 12px 14px 12px 18px;
+  border: 1px solid rgb(20 45 76 / 12%);
+  border-left: 6px solid #5d866c;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f1f1f1, #d9d9d9);
+  box-shadow: 0 5px 10px rgb(0 0 0 / 18%);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 14px rgb(0 0 0 / 22%);
+}
+
+.task-title {
+  grid-column: 1;
+  margin: 0 0 5px;
+  color: #000;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 400;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.task-details {
+  grid-column: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  color: #333;
+  font-size: 14px;
+}
+
+.task-actions {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* Complete and Delete action buttons */
+.complete-button,
+.delete-button {
+  width: 108px;
+  max-width: 100%;
+  min-height: 34px;
+  padding: 7px 8px;
+  border: 1px solid rgb(0 0 0 / 15%);
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 160ms ease, transform 160ms ease;
+}
+
+.complete-button {
+  background: #4a943e;
+}
+
+.delete-button {
+  background: #df2525;
+}
+
+.complete-button:hover {
+  background: #397731;
+}
+
+.delete-button:hover {
+  background: #b51e1e;
+}
+
+.complete-button:hover,
+.delete-button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+/* Completed card styling accent */
+.completed-section .task-card {
+  border-left-color: #167d8d;
+  opacity: 0.82;
+}
+
+.task-section[hidden] {
+  display: none;
+}
+
+/* Accessibility: disables transitions for users requesting reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .task-list,
+  .task-card,
+  .section-title::before,
+  .sort-options button::after,
+  .complete-button,
+  .delete-button {
+    transition: none;
+  }
+}
+
+/* Responsive view for mobile screens (under 660px) */
+@media (max-width: 660px) {
+  .welcome-message {
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 28px;
+  }
+
+  .add-task {
+    gap: 12px;
+    padding: 20px 16px 24px;
+  }
+
+  .form-add-task-title {
+    font-size: 30px;
+  }
+
+  .form-add-task-date,
+  .form-add-task-time,
+  .form-add-task-submit {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .sort-controls {
+    gap: 14px;
+    font-size: 22px;
+  }
+
+  .sort-options {
+    display: none;
+  }
+
+  .sort-dropdown {
+    display: block;
+    width: 100%;
+  }
+
+  .task-card {
+    grid-template-columns: minmax(0, 1fr) 112px;
+    column-gap: 10px;
+    padding: 14px 12px 14px 16px;
+  }
+
+  .task-actions {
+    grid-column: 2;
+  }
+
+  .complete-button,
+  .delete-button {
+    width: 108px;
+    padding: 7px 8px;
+    text-align: center;
+  }
+}
